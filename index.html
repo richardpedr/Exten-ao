@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vídeo-aulas de Portugol</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f9;
+      display: flex;
+    }
+    #menu {
+      width: 200px;
+      background-color: #005792;
+      color: #fff;
+      padding: 20px;
+      position: fixed;
+      height: 100%;
+    }
+    #menu h2 {
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+    #menu ul {
+      list-style: none;
+      padding: 0;
+    }
+    #menu li {
+      margin: 10px 0;
+    }
+    #menu button {
+      background: none;
+      color: #fff;
+      border: none;
+      text-align: left;
+      cursor: pointer;
+      font-size: 16px;
+      padding: 5px 10px;
+      width: 100%;
+    }
+    #menu button:hover {
+      background-color: #004067;
+    }
+    main {
+      margin-left: 220px;
+      padding: 20px;
+      width: 100%;
+    }
+    iframe {
+      width: 100%;
+      height: 500px;
+      border: none;
+    }
+    header {
+      margin-bottom: 20px;
+    }
+    h1 {
+      color: #005792;
+    }
+  </style>
+</head>
+<body>
+  <div id="menu">
+    <h2>Escolha uma Aula</h2>
+    <ul id="menu-list">
+      <!-- Menu será populado por JavaScript -->
+    </ul>
+  </div>
+  <main>
+    <header>
+      <h1>Vídeo-aulas de Portugol</h1>
+      <p>Escolha uma aula no menu para assistir.</p>
+    </header>
+    <div id="video-container">
+      <!-- Vídeo será exibido aqui -->
+    </div>
+  </main>
+  <script>
+    // Lista de vídeos e seus títulos
+    const aulas = [
+      { titulo: "Aula 1: Apresentação do Curso", link: "https://www.youtube.com/embed/G_XJ8R5Eemg?list=PLlK76oPMCRM78W7h7QAbO67ioBh3voQcr" },
+      { titulo: "Aula 2: O que é Programação", link: "https://www.youtube.com/embed/C4-6zuQbKso?list=PLlK76oPMCRM78W7h7QAbO67ioBh3voQcr" },
+      { titulo: "Aula 3: Introdução à lógica de programação parte 1", link: "https://www.youtube.com/embed/wvYKGUQAsjU" },
+      { titulo: "Aula 4: Introdução à lógica de programação parte 2", link: "https://www.youtube.com/embed/boNBFdUqVlA" },
+      { titulo: "Aula 5: Introdução à lógica de programação parte 3", link: "https://www.youtube.com/embed/KndaLFiBD_w" },
+      { titulo: "Aula 6: Estruturas de controle", link: "https://www.youtube.com/embed/CD4vsNqN7o8" },
+      { titulo: "Aula 7: Laços de repetição", link: "https://www.youtube.com/embed/otcvIFE3Rxs" },
+      { titulo: "Aula 8: Estrutura de controle 2 - Final", link: "https://www.youtube.com/embed/T9adSeE1HtY" },
+    ];
+
+    // Referências aos elementos
+    const menuList = document.getElementById("menu-list");
+    const videoContainer = document.getElementById("video-container");
+
+    // Função para carregar vídeo
+    function carregarVideo(link) {
+      videoContainer.innerHTML = `<iframe 
+        src="${link}" 
+        title="Vídeo aula" 
+        frameborder="0" 
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+        allowfullscreen></iframe>`;
+    }
+
+    // Populando o menu
+    aulas.forEach((aula) => {
+      const li = document.createElement("li");
+      const button = document.createElement("button");
+      button.textContent = aula.titulo;
+      button.addEventListener("click", () => carregarVideo(aula.link));
+      li.appendChild(button);
+      menuList.appendChild(li);
+    });
+
+    // Carregar o primeiro vídeo por padrão
+    carregarVideo(aulas[0].link);
+  </script>
+</body>
+</html>
